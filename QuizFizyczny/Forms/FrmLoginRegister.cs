@@ -19,7 +19,7 @@ namespace QuizFizyczny.Forms
             InitializeComponent();
         }
 
-    #region REJESTRACJA
+        #region REJESTRACJA
         private void BtnRegister_Click(object sender, EventArgs e)
         {
             if (walidujRejestracje())

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace QuizFizyczny.Class
 {
+    /// <summary>
+    /// Klasa statyczna. Posiada informacje o zalogowanym użytkowniku, zwłaszcza ważny jest jego id w bazie oraz login.
+    /// </summary>
     public static class ContextApp
     {
         public static string LoginUzytko;
