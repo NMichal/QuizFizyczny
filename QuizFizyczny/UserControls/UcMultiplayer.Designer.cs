@@ -47,6 +47,7 @@
             this.BtnPlayMulti.TabIndex = 0;
             this.BtnPlayMulti.Text = "Graj";
             this.BtnPlayMulti.UseVisualStyleBackColor = true;
+            this.BtnPlayMulti.Click += new System.EventHandler(this.BtnPlayMulti_Click);
             // 
             // BtnWyniki
             // 

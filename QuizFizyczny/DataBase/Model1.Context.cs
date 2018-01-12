@@ -26,5 +26,10 @@ namespace QuizFizyczny.DataBase
         }
     
         public virtual DbSet<Uzytkownicy> Uzytkownicy { get; set; }
+        public virtual DbSet<Odpowiedzi> Odpowiedzi { get; set; }
+        public virtual DbSet<PoprawneOdpowiedzi> PoprawneOdpowiedzi { get; set; }
+        public virtual DbSet<Pytania> Pytania { get; set; }
+        public virtual DbSet<Rozgrywka> Rozgrywka { get; set; }
+        public virtual DbSet<RozgrywkaOdp> RozgrywkaOdp { get; set; }
     }
 }

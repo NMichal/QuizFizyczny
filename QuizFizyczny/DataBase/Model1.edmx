@@ -4,7 +4,52 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuizFizModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QuizFizModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Odpowiedzi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pytanie" Type="int" Nullable="false" />
+          <Property Name="odpowiedz" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PoprawneOdpowiedzi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pytanie" Type="int" Nullable="false" />
+          <Property Name="id_odpowiedzPytanie" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pytania">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="trescPytania" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rozgrywka">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPytanie1" Type="int" Nullable="false" />
+          <Property Name="idPytanie2" Type="int" Nullable="false" />
+          <Property Name="idPytanie3" Type="int" Nullable="false" />
+          <Property Name="idUztk1" Type="int" Nullable="false" />
+          <Property Name="idUztk2" Type="int" />
+        </EntityType>
+        <EntityType Name="RozgrywkaOdp">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRozgrywki" Type="int" Nullable="false" />
+          <Property Name="idodp1" Type="int" Nullable="false" />
+          <Property Name="idodp2" Type="int" Nullable="false" />
+          <Property Name="idodp3" Type="int" Nullable="false" />
+          <Property Name="iduzt" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Uzytkownicy">
           <Key>
             <PropertyRef Name="id" />
@@ -13,11 +58,239 @@
           <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="haslo" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Odpowiedzi_Odpowiedzi">
+          <End Role="Odpowiedzi" Type="Self.Odpowiedzi" Multiplicity="1" />
+          <End Role="Odpowiedzi1" Type="Self.Odpowiedzi" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Odpowiedzi">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Odpowiedzi1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odpowiedzi_Pytania">
+          <End Role="Pytania" Type="Self.Pytania" Multiplicity="1" />
+          <End Role="Odpowiedzi" Type="Self.Odpowiedzi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pytania">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Odpowiedzi">
+              <PropertyRef Name="id_pytanie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PoprawneOdpowiedzi_Odpowiedzi">
+          <End Role="Odpowiedzi" Type="Self.Odpowiedzi" Multiplicity="1" />
+          <End Role="PoprawneOdpowiedzi" Type="Self.PoprawneOdpowiedzi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odpowiedzi">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PoprawneOdpowiedzi">
+              <PropertyRef Name="id_odpowiedzPytanie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PoprawneOdpowiedzi_Pytania">
+          <End Role="Pytania" Type="Self.Pytania" Multiplicity="1" />
+          <End Role="PoprawneOdpowiedzi" Type="Self.PoprawneOdpowiedzi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pytania">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PoprawneOdpowiedzi">
+              <PropertyRef Name="id_pytanie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rozgrywka_Pytania1">
+          <End Role="Pytania" Type="Self.Pytania" Multiplicity="1" />
+          <End Role="Rozgrywka" Type="Self.Rozgrywka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pytania">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rozgrywka">
+              <PropertyRef Name="idPytanie1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rozgrywka_Pytania2">
+          <End Role="Pytania" Type="Self.Pytania" Multiplicity="1" />
+          <End Role="Rozgrywka" Type="Self.Rozgrywka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pytania">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rozgrywka">
+              <PropertyRef Name="idPytanie2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rozgrywka_Pytania3">
+          <End Role="Pytania" Type="Self.Pytania" Multiplicity="1" />
+          <End Role="Rozgrywka" Type="Self.Rozgrywka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pytania">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rozgrywka">
+              <PropertyRef Name="idPytanie3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rozgrywka_Uztk1">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="1" />
+          <End Role="Rozgrywka" Type="Self.Rozgrywka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rozgrywka">
+              <PropertyRef Name="idUztk1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rozgrywka_Uztk2">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="0..1" />
+          <End Role="Rozgrywka" Type="Self.Rozgrywka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rozgrywka">
+              <PropertyRef Name="idUztk2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RozgrywkaOdp_Odpowiedzi1">
+          <End Role="Odpowiedzi" Type="Self.Odpowiedzi" Multiplicity="1" />
+          <End Role="RozgrywkaOdp" Type="Self.RozgrywkaOdp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odpowiedzi">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RozgrywkaOdp">
+              <PropertyRef Name="idodp1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RozgrywkaOdp_Odpowiedzi2">
+          <End Role="Odpowiedzi" Type="Self.Odpowiedzi" Multiplicity="1" />
+          <End Role="RozgrywkaOdp" Type="Self.RozgrywkaOdp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odpowiedzi">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RozgrywkaOdp">
+              <PropertyRef Name="idodp2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RozgrywkaOdp_Odpowiedzi3">
+          <End Role="Odpowiedzi" Type="Self.Odpowiedzi" Multiplicity="1" />
+          <End Role="RozgrywkaOdp" Type="Self.RozgrywkaOdp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odpowiedzi">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RozgrywkaOdp">
+              <PropertyRef Name="idodp3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RozgrywkaOdp_Rozgrywka">
+          <End Role="Rozgrywka" Type="Self.Rozgrywka" Multiplicity="1" />
+          <End Role="RozgrywkaOdp" Type="Self.RozgrywkaOdp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rozgrywka">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RozgrywkaOdp">
+              <PropertyRef Name="idRozgrywki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RozgrywkaOdp_Uztk">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="1" />
+          <End Role="RozgrywkaOdp" Type="Self.RozgrywkaOdp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RozgrywkaOdp">
+              <PropertyRef Name="iduzt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QuizFizModelStoreContainer">
+          <EntitySet Name="Odpowiedzi" EntityType="Self.Odpowiedzi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PoprawneOdpowiedzi" EntityType="Self.PoprawneOdpowiedzi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pytania" EntityType="Self.Pytania" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rozgrywka" EntityType="Self.Rozgrywka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RozgrywkaOdp" EntityType="Self.RozgrywkaOdp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Uzytkownicy" EntityType="Self.Uzytkownicy" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Odpowiedzi_Odpowiedzi" Association="Self.FK_Odpowiedzi_Odpowiedzi">
+            <End Role="Odpowiedzi" EntitySet="Odpowiedzi" />
+            <End Role="Odpowiedzi1" EntitySet="Odpowiedzi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odpowiedzi_Pytania" Association="Self.FK_Odpowiedzi_Pytania">
+            <End Role="Pytania" EntitySet="Pytania" />
+            <End Role="Odpowiedzi" EntitySet="Odpowiedzi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PoprawneOdpowiedzi_Odpowiedzi" Association="Self.FK_PoprawneOdpowiedzi_Odpowiedzi">
+            <End Role="Odpowiedzi" EntitySet="Odpowiedzi" />
+            <End Role="PoprawneOdpowiedzi" EntitySet="PoprawneOdpowiedzi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PoprawneOdpowiedzi_Pytania" Association="Self.FK_PoprawneOdpowiedzi_Pytania">
+            <End Role="Pytania" EntitySet="Pytania" />
+            <End Role="PoprawneOdpowiedzi" EntitySet="PoprawneOdpowiedzi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rozgrywka_Pytania1" Association="Self.FK_Rozgrywka_Pytania1">
+            <End Role="Pytania" EntitySet="Pytania" />
+            <End Role="Rozgrywka" EntitySet="Rozgrywka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rozgrywka_Pytania2" Association="Self.FK_Rozgrywka_Pytania2">
+            <End Role="Pytania" EntitySet="Pytania" />
+            <End Role="Rozgrywka" EntitySet="Rozgrywka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rozgrywka_Pytania3" Association="Self.FK_Rozgrywka_Pytania3">
+            <End Role="Pytania" EntitySet="Pytania" />
+            <End Role="Rozgrywka" EntitySet="Rozgrywka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rozgrywka_Uztk1" Association="Self.FK_Rozgrywka_Uztk1">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="Rozgrywka" EntitySet="Rozgrywka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rozgrywka_Uztk2" Association="Self.FK_Rozgrywka_Uztk2">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="Rozgrywka" EntitySet="Rozgrywka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RozgrywkaOdp_Odpowiedzi1" Association="Self.FK_RozgrywkaOdp_Odpowiedzi1">
+            <End Role="Odpowiedzi" EntitySet="Odpowiedzi" />
+            <End Role="RozgrywkaOdp" EntitySet="RozgrywkaOdp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RozgrywkaOdp_Odpowiedzi2" Association="Self.FK_RozgrywkaOdp_Odpowiedzi2">
+            <End Role="Odpowiedzi" EntitySet="Odpowiedzi" />
+            <End Role="RozgrywkaOdp" EntitySet="RozgrywkaOdp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RozgrywkaOdp_Odpowiedzi3" Association="Self.FK_RozgrywkaOdp_Odpowiedzi3">
+            <End Role="Odpowiedzi" EntitySet="Odpowiedzi" />
+            <End Role="RozgrywkaOdp" EntitySet="RozgrywkaOdp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RozgrywkaOdp_Rozgrywka" Association="Self.FK_RozgrywkaOdp_Rozgrywka">
+            <End Role="Rozgrywka" EntitySet="Rozgrywka" />
+            <End Role="RozgrywkaOdp" EntitySet="RozgrywkaOdp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RozgrywkaOdp_Uztk" Association="Self.FK_RozgrywkaOdp_Uztk">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="RozgrywkaOdp" EntitySet="RozgrywkaOdp" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuizFizModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -28,10 +301,312 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="haslo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Rozgrywka" Relationship="QuizFizModel.FK_Rozgrywka_Uztk1" FromRole="Uzytkownicy" ToRole="Rozgrywka" />
+          <NavigationProperty Name="Rozgrywka1" Relationship="QuizFizModel.FK_Rozgrywka_Uztk2" FromRole="Uzytkownicy" ToRole="Rozgrywka" />
+          <NavigationProperty Name="RozgrywkaOdp" Relationship="QuizFizModel.FK_RozgrywkaOdp_Uztk" FromRole="Uzytkownicy" ToRole="RozgrywkaOdp" />
         </EntityType>
         <EntityContainer Name="QuizFizEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Uzytkownicy" EntityType="Self.Uzytkownicy" />
+          <EntitySet Name="Odpowiedzi" EntityType="QuizFizModel.Odpowiedzi" />
+          <EntitySet Name="PoprawneOdpowiedzi" EntityType="QuizFizModel.PoprawneOdpowiedzi" />
+          <EntitySet Name="Pytania" EntityType="QuizFizModel.Pytania" />
+          <EntitySet Name="Rozgrywka" EntityType="QuizFizModel.Rozgrywka" />
+          <EntitySet Name="RozgrywkaOdp" EntityType="QuizFizModel.RozgrywkaOdp" />
+          <AssociationSet Name="FK_Odpowiedzi_Odpowiedzi" Association="QuizFizModel.FK_Odpowiedzi_Odpowiedzi">
+            <End Role="Odpowiedzi" EntitySet="Odpowiedzi" />
+            <End Role="Odpowiedzi1" EntitySet="Odpowiedzi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odpowiedzi_Pytania" Association="QuizFizModel.FK_Odpowiedzi_Pytania">
+            <End Role="Pytania" EntitySet="Pytania" />
+            <End Role="Odpowiedzi" EntitySet="Odpowiedzi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PoprawneOdpowiedzi_Odpowiedzi" Association="QuizFizModel.FK_PoprawneOdpowiedzi_Odpowiedzi">
+            <End Role="Odpowiedzi" EntitySet="Odpowiedzi" />
+            <End Role="PoprawneOdpowiedzi" EntitySet="PoprawneOdpowiedzi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RozgrywkaOdp_Odpowiedzi1" Association="QuizFizModel.FK_RozgrywkaOdp_Odpowiedzi1">
+            <End Role="Odpowiedzi" EntitySet="Odpowiedzi" />
+            <End Role="RozgrywkaOdp" EntitySet="RozgrywkaOdp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RozgrywkaOdp_Odpowiedzi2" Association="QuizFizModel.FK_RozgrywkaOdp_Odpowiedzi2">
+            <End Role="Odpowiedzi" EntitySet="Odpowiedzi" />
+            <End Role="RozgrywkaOdp" EntitySet="RozgrywkaOdp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RozgrywkaOdp_Odpowiedzi3" Association="QuizFizModel.FK_RozgrywkaOdp_Odpowiedzi3">
+            <End Role="Odpowiedzi" EntitySet="Odpowiedzi" />
+            <End Role="RozgrywkaOdp" EntitySet="RozgrywkaOdp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PoprawneOdpowiedzi_Pytania" Association="QuizFizModel.FK_PoprawneOdpowiedzi_Pytania">
+            <End Role="Pytania" EntitySet="Pytania" />
+            <End Role="PoprawneOdpowiedzi" EntitySet="PoprawneOdpowiedzi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rozgrywka_Pytania1" Association="QuizFizModel.FK_Rozgrywka_Pytania1">
+            <End Role="Pytania" EntitySet="Pytania" />
+            <End Role="Rozgrywka" EntitySet="Rozgrywka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rozgrywka_Pytania2" Association="QuizFizModel.FK_Rozgrywka_Pytania2">
+            <End Role="Pytania" EntitySet="Pytania" />
+            <End Role="Rozgrywka" EntitySet="Rozgrywka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rozgrywka_Pytania3" Association="QuizFizModel.FK_Rozgrywka_Pytania3">
+            <End Role="Pytania" EntitySet="Pytania" />
+            <End Role="Rozgrywka" EntitySet="Rozgrywka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rozgrywka_Uztk1" Association="QuizFizModel.FK_Rozgrywka_Uztk1">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="Rozgrywka" EntitySet="Rozgrywka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rozgrywka_Uztk2" Association="QuizFizModel.FK_Rozgrywka_Uztk2">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="Rozgrywka" EntitySet="Rozgrywka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RozgrywkaOdp_Rozgrywka" Association="QuizFizModel.FK_RozgrywkaOdp_Rozgrywka">
+            <End Role="Rozgrywka" EntitySet="Rozgrywka" />
+            <End Role="RozgrywkaOdp" EntitySet="RozgrywkaOdp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RozgrywkaOdp_Uztk" Association="QuizFizModel.FK_RozgrywkaOdp_Uztk">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="RozgrywkaOdp" EntitySet="RozgrywkaOdp" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Odpowiedzi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_pytanie" Type="Int32" Nullable="false" />
+          <Property Name="odpowiedz" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Odpowiedzi1" Relationship="QuizFizModel.FK_Odpowiedzi_Odpowiedzi" FromRole="Odpowiedzi" ToRole="Odpowiedzi1" />
+          <NavigationProperty Name="Odpowiedzi2" Relationship="QuizFizModel.FK_Odpowiedzi_Odpowiedzi" FromRole="Odpowiedzi1" ToRole="Odpowiedzi" />
+          <NavigationProperty Name="Pytania" Relationship="QuizFizModel.FK_Odpowiedzi_Pytania" FromRole="Odpowiedzi" ToRole="Pytania" />
+          <NavigationProperty Name="PoprawneOdpowiedzi" Relationship="QuizFizModel.FK_PoprawneOdpowiedzi_Odpowiedzi" FromRole="Odpowiedzi" ToRole="PoprawneOdpowiedzi" />
+          <NavigationProperty Name="RozgrywkaOdp" Relationship="QuizFizModel.FK_RozgrywkaOdp_Odpowiedzi1" FromRole="Odpowiedzi" ToRole="RozgrywkaOdp" />
+          <NavigationProperty Name="RozgrywkaOdp1" Relationship="QuizFizModel.FK_RozgrywkaOdp_Odpowiedzi2" FromRole="Odpowiedzi" ToRole="RozgrywkaOdp" />
+          <NavigationProperty Name="RozgrywkaOdp2" Relationship="QuizFizModel.FK_RozgrywkaOdp_Odpowiedzi3" FromRole="Odpowiedzi" ToRole="RozgrywkaOdp" />
+        </EntityType>
+        <EntityType Name="PoprawneOdpowiedzi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_pytanie" Type="Int32" Nullable="false" />
+          <Property Name="id_odpowiedzPytanie" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Odpowiedzi" Relationship="QuizFizModel.FK_PoprawneOdpowiedzi_Odpowiedzi" FromRole="PoprawneOdpowiedzi" ToRole="Odpowiedzi" />
+          <NavigationProperty Name="Pytania" Relationship="QuizFizModel.FK_PoprawneOdpowiedzi_Pytania" FromRole="PoprawneOdpowiedzi" ToRole="Pytania" />
+        </EntityType>
+        <EntityType Name="Pytania">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="trescPytania" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Odpowiedzi" Relationship="QuizFizModel.FK_Odpowiedzi_Pytania" FromRole="Pytania" ToRole="Odpowiedzi" />
+          <NavigationProperty Name="PoprawneOdpowiedzi" Relationship="QuizFizModel.FK_PoprawneOdpowiedzi_Pytania" FromRole="Pytania" ToRole="PoprawneOdpowiedzi" />
+          <NavigationProperty Name="Rozgrywka" Relationship="QuizFizModel.FK_Rozgrywka_Pytania1" FromRole="Pytania" ToRole="Rozgrywka" />
+          <NavigationProperty Name="Rozgrywka1" Relationship="QuizFizModel.FK_Rozgrywka_Pytania2" FromRole="Pytania" ToRole="Rozgrywka" />
+          <NavigationProperty Name="Rozgrywka2" Relationship="QuizFizModel.FK_Rozgrywka_Pytania3" FromRole="Pytania" ToRole="Rozgrywka" />
+        </EntityType>
+        <EntityType Name="Rozgrywka">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="idPytanie1" Type="Int32" Nullable="false" />
+          <Property Name="idPytanie2" Type="Int32" Nullable="false" />
+          <Property Name="idPytanie3" Type="Int32" Nullable="false" />
+          <Property Name="idUztk1" Type="Int32" Nullable="false" />
+          <Property Name="idUztk2" Type="Int32" />
+          <NavigationProperty Name="Pytania" Relationship="QuizFizModel.FK_Rozgrywka_Pytania1" FromRole="Rozgrywka" ToRole="Pytania" />
+          <NavigationProperty Name="Pytania1" Relationship="QuizFizModel.FK_Rozgrywka_Pytania2" FromRole="Rozgrywka" ToRole="Pytania" />
+          <NavigationProperty Name="Pytania2" Relationship="QuizFizModel.FK_Rozgrywka_Pytania3" FromRole="Rozgrywka" ToRole="Pytania" />
+          <NavigationProperty Name="Uzytkownicy" Relationship="QuizFizModel.FK_Rozgrywka_Uztk1" FromRole="Rozgrywka" ToRole="Uzytkownicy" />
+          <NavigationProperty Name="Uzytkownicy1" Relationship="QuizFizModel.FK_Rozgrywka_Uztk2" FromRole="Rozgrywka" ToRole="Uzytkownicy" />
+          <NavigationProperty Name="RozgrywkaOdp" Relationship="QuizFizModel.FK_RozgrywkaOdp_Rozgrywka" FromRole="Rozgrywka" ToRole="RozgrywkaOdp" />
+        </EntityType>
+        <EntityType Name="RozgrywkaOdp">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="idRozgrywki" Type="Int32" Nullable="false" />
+          <Property Name="idodp1" Type="Int32" Nullable="false" />
+          <Property Name="idodp2" Type="Int32" Nullable="false" />
+          <Property Name="idodp3" Type="Int32" Nullable="false" />
+          <Property Name="iduzt" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Odpowiedzi" Relationship="QuizFizModel.FK_RozgrywkaOdp_Odpowiedzi1" FromRole="RozgrywkaOdp" ToRole="Odpowiedzi" />
+          <NavigationProperty Name="Odpowiedzi1" Relationship="QuizFizModel.FK_RozgrywkaOdp_Odpowiedzi2" FromRole="RozgrywkaOdp" ToRole="Odpowiedzi" />
+          <NavigationProperty Name="Odpowiedzi2" Relationship="QuizFizModel.FK_RozgrywkaOdp_Odpowiedzi3" FromRole="RozgrywkaOdp" ToRole="Odpowiedzi" />
+          <NavigationProperty Name="Rozgrywka" Relationship="QuizFizModel.FK_RozgrywkaOdp_Rozgrywka" FromRole="RozgrywkaOdp" ToRole="Rozgrywka" />
+          <NavigationProperty Name="Uzytkownicy" Relationship="QuizFizModel.FK_RozgrywkaOdp_Uztk" FromRole="RozgrywkaOdp" ToRole="Uzytkownicy" />
+        </EntityType>
+        <Association Name="FK_Odpowiedzi_Odpowiedzi">
+          <End Type="QuizFizModel.Odpowiedzi" Role="Odpowiedzi" Multiplicity="1" />
+          <End Type="QuizFizModel.Odpowiedzi" Role="Odpowiedzi1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Odpowiedzi">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Odpowiedzi1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odpowiedzi_Pytania">
+          <End Type="QuizFizModel.Pytania" Role="Pytania" Multiplicity="1" />
+          <End Type="QuizFizModel.Odpowiedzi" Role="Odpowiedzi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pytania">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Odpowiedzi">
+              <PropertyRef Name="id_pytanie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PoprawneOdpowiedzi_Odpowiedzi">
+          <End Type="QuizFizModel.Odpowiedzi" Role="Odpowiedzi" Multiplicity="1" />
+          <End Type="QuizFizModel.PoprawneOdpowiedzi" Role="PoprawneOdpowiedzi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odpowiedzi">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PoprawneOdpowiedzi">
+              <PropertyRef Name="id_odpowiedzPytanie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RozgrywkaOdp_Odpowiedzi1">
+          <End Type="QuizFizModel.Odpowiedzi" Role="Odpowiedzi" Multiplicity="1" />
+          <End Type="QuizFizModel.RozgrywkaOdp" Role="RozgrywkaOdp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odpowiedzi">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RozgrywkaOdp">
+              <PropertyRef Name="idodp1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RozgrywkaOdp_Odpowiedzi2">
+          <End Type="QuizFizModel.Odpowiedzi" Role="Odpowiedzi" Multiplicity="1" />
+          <End Type="QuizFizModel.RozgrywkaOdp" Role="RozgrywkaOdp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odpowiedzi">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RozgrywkaOdp">
+              <PropertyRef Name="idodp2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RozgrywkaOdp_Odpowiedzi3">
+          <End Type="QuizFizModel.Odpowiedzi" Role="Odpowiedzi" Multiplicity="1" />
+          <End Type="QuizFizModel.RozgrywkaOdp" Role="RozgrywkaOdp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odpowiedzi">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RozgrywkaOdp">
+              <PropertyRef Name="idodp3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PoprawneOdpowiedzi_Pytania">
+          <End Type="QuizFizModel.Pytania" Role="Pytania" Multiplicity="1" />
+          <End Type="QuizFizModel.PoprawneOdpowiedzi" Role="PoprawneOdpowiedzi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pytania">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PoprawneOdpowiedzi">
+              <PropertyRef Name="id_pytanie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rozgrywka_Pytania1">
+          <End Type="QuizFizModel.Pytania" Role="Pytania" Multiplicity="1" />
+          <End Type="QuizFizModel.Rozgrywka" Role="Rozgrywka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pytania">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rozgrywka">
+              <PropertyRef Name="idPytanie1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rozgrywka_Pytania2">
+          <End Type="QuizFizModel.Pytania" Role="Pytania" Multiplicity="1" />
+          <End Type="QuizFizModel.Rozgrywka" Role="Rozgrywka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pytania">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rozgrywka">
+              <PropertyRef Name="idPytanie2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rozgrywka_Pytania3">
+          <End Type="QuizFizModel.Pytania" Role="Pytania" Multiplicity="1" />
+          <End Type="QuizFizModel.Rozgrywka" Role="Rozgrywka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pytania">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rozgrywka">
+              <PropertyRef Name="idPytanie3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rozgrywka_Uztk1">
+          <End Type="QuizFizModel.Uzytkownicy" Role="Uzytkownicy" Multiplicity="1" />
+          <End Type="QuizFizModel.Rozgrywka" Role="Rozgrywka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rozgrywka">
+              <PropertyRef Name="idUztk1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rozgrywka_Uztk2">
+          <End Type="QuizFizModel.Uzytkownicy" Role="Uzytkownicy" Multiplicity="0..1" />
+          <End Type="QuizFizModel.Rozgrywka" Role="Rozgrywka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rozgrywka">
+              <PropertyRef Name="idUztk2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RozgrywkaOdp_Rozgrywka">
+          <End Type="QuizFizModel.Rozgrywka" Role="Rozgrywka" Multiplicity="1" />
+          <End Type="QuizFizModel.RozgrywkaOdp" Role="RozgrywkaOdp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rozgrywka">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RozgrywkaOdp">
+              <PropertyRef Name="idRozgrywki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RozgrywkaOdp_Uztk">
+          <End Type="QuizFizModel.Uzytkownicy" Role="Uzytkownicy" Multiplicity="1" />
+          <End Type="QuizFizModel.RozgrywkaOdp" Role="RozgrywkaOdp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RozgrywkaOdp">
+              <PropertyRef Name="iduzt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -44,6 +619,56 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="haslo" ColumnName="haslo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Odpowiedzi">
+            <EntityTypeMapping TypeName="QuizFizModel.Odpowiedzi">
+              <MappingFragment StoreEntitySet="Odpowiedzi">
+                <ScalarProperty Name="odpowiedz" ColumnName="odpowiedz" />
+                <ScalarProperty Name="id_pytanie" ColumnName="id_pytanie" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PoprawneOdpowiedzi">
+            <EntityTypeMapping TypeName="QuizFizModel.PoprawneOdpowiedzi">
+              <MappingFragment StoreEntitySet="PoprawneOdpowiedzi">
+                <ScalarProperty Name="id_odpowiedzPytanie" ColumnName="id_odpowiedzPytanie" />
+                <ScalarProperty Name="id_pytanie" ColumnName="id_pytanie" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pytania">
+            <EntityTypeMapping TypeName="QuizFizModel.Pytania">
+              <MappingFragment StoreEntitySet="Pytania">
+                <ScalarProperty Name="trescPytania" ColumnName="trescPytania" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rozgrywka">
+            <EntityTypeMapping TypeName="QuizFizModel.Rozgrywka">
+              <MappingFragment StoreEntitySet="Rozgrywka">
+                <ScalarProperty Name="idUztk2" ColumnName="idUztk2" />
+                <ScalarProperty Name="idUztk1" ColumnName="idUztk1" />
+                <ScalarProperty Name="idPytanie3" ColumnName="idPytanie3" />
+                <ScalarProperty Name="idPytanie2" ColumnName="idPytanie2" />
+                <ScalarProperty Name="idPytanie1" ColumnName="idPytanie1" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RozgrywkaOdp">
+            <EntityTypeMapping TypeName="QuizFizModel.RozgrywkaOdp">
+              <MappingFragment StoreEntitySet="RozgrywkaOdp">
+                <ScalarProperty Name="iduzt" ColumnName="iduzt" />
+                <ScalarProperty Name="idodp3" ColumnName="idodp3" />
+                <ScalarProperty Name="idodp2" ColumnName="idodp2" />
+                <ScalarProperty Name="idodp1" ColumnName="idodp1" />
+                <ScalarProperty Name="idRozgrywki" ColumnName="idRozgrywki" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

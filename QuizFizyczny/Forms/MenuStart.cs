@@ -29,7 +29,7 @@ namespace QuizFizyczny.Forms
 
         private void bttnMulti_Click(object sender, EventArgs e)
         {
-            UcMultiplayer ucMulti = new UcMultiplayer();
+            UcMultiplayer ucMulti = new UcMultiplayer(this);
             ucMulti.Dock = DockStyle.Fill;
             ustawPanelZTrybem(ucMulti);
         }

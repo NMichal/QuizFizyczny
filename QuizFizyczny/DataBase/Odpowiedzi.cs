@@ -12,25 +12,31 @@ namespace QuizFizyczny.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class Uzytkownicy
+    public partial class Odpowiedzi
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Uzytkownicy()
+        public Odpowiedzi()
         {
-            this.Rozgrywka = new HashSet<Rozgrywka>();
-            this.Rozgrywka1 = new HashSet<Rozgrywka>();
+            this.PoprawneOdpowiedzi = new HashSet<PoprawneOdpowiedzi>();
             this.RozgrywkaOdp = new HashSet<RozgrywkaOdp>();
+            this.RozgrywkaOdp1 = new HashSet<RozgrywkaOdp>();
+            this.RozgrywkaOdp2 = new HashSet<RozgrywkaOdp>();
         }
     
         public int id { get; set; }
-        public string login { get; set; }
-        public string haslo { get; set; }
+        public int id_pytanie { get; set; }
+        public string odpowiedz { get; set; }
     
+        public virtual Odpowiedzi Odpowiedzi1 { get; set; }
+        public virtual Odpowiedzi Odpowiedzi2 { get; set; }
+        public virtual Pytania Pytania { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rozgrywka> Rozgrywka { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rozgrywka> Rozgrywka1 { get; set; }
+        public virtual ICollection<PoprawneOdpowiedzi> PoprawneOdpowiedzi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RozgrywkaOdp> RozgrywkaOdp { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RozgrywkaOdp> RozgrywkaOdp1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RozgrywkaOdp> RozgrywkaOdp2 { get; set; }
     }
 }

@@ -6,6 +6,25 @@
     <edmx:Diagrams>
       <Diagram DiagramId="2070ab4e454b4d70b232d6477ff8ce23" Name="Diagram1">
         <EntityTypeShape EntityType="QuizFizModel.Uzytkownicy" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizFizModel.Odpowiedzi" Width="1.5" PointX="5.625" PointY="8.875" />
+        <EntityTypeShape EntityType="QuizFizModel.PoprawneOdpowiedzi" Width="1.5" PointX="7.875" PointY="9.5" />
+        <EntityTypeShape EntityType="QuizFizModel.Pytania" Width="1.5" PointX="3.375" PointY="5.125" />
+        <EntityTypeShape EntityType="QuizFizModel.Rozgrywka" Width="1.5" PointX="5.625" PointY="2.5" />
+        <EntityTypeShape EntityType="QuizFizModel.RozgrywkaOdp" Width="1.5" PointX="7.875" PointY="4.75" />
+        <AssociationConnector Association="QuizFizModel.FK_Odpowiedzi_Odpowiedzi" />
+        <AssociationConnector Association="QuizFizModel.FK_Odpowiedzi_Pytania" />
+        <AssociationConnector Association="QuizFizModel.FK_PoprawneOdpowiedzi_Odpowiedzi" />
+        <AssociationConnector Association="QuizFizModel.FK_RozgrywkaOdp_Odpowiedzi1" />
+        <AssociationConnector Association="QuizFizModel.FK_RozgrywkaOdp_Odpowiedzi2" />
+        <AssociationConnector Association="QuizFizModel.FK_RozgrywkaOdp_Odpowiedzi3" />
+        <AssociationConnector Association="QuizFizModel.FK_PoprawneOdpowiedzi_Pytania" />
+        <AssociationConnector Association="QuizFizModel.FK_Rozgrywka_Pytania1" />
+        <AssociationConnector Association="QuizFizModel.FK_Rozgrywka_Pytania2" />
+        <AssociationConnector Association="QuizFizModel.FK_Rozgrywka_Pytania3" />
+        <AssociationConnector Association="QuizFizModel.FK_Rozgrywka_Uztk1" />
+        <AssociationConnector Association="QuizFizModel.FK_Rozgrywka_Uztk2" />
+        <AssociationConnector Association="QuizFizModel.FK_RozgrywkaOdp_Rozgrywka" />
+        <AssociationConnector Association="QuizFizModel.FK_RozgrywkaOdp_Uztk" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

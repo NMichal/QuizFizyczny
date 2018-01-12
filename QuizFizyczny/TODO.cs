@@ -8,9 +8,9 @@ namespace QuizFizyczny
 {
     class TODO
     {
-        ///logowanie i rejestracja - MATEK
-        ///po udanym logowaniu login uzytkownika oraz jego id dodawane sa do ContextApp <<<<<<<<<<<<<<<<<<<<<<<
-        ///
+        ///logowanie i rejestracja - MATEK <<<<<<<<<<<<<<<<<< GOTOWE
+        ///po udanym logowaniu login uzytkownika oraz jego id dodawane sa do ContextApp <<<<<<<<<<<<< GOTOWE
+        ///user control z rozgrywka
         /// 
         /// 
         ///menu Start z wyborem gry - single czy multi

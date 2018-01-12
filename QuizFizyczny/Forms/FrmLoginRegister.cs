@@ -147,7 +147,7 @@ namespace QuizFizyczny.Forms
 
         #endregion
 
-        //na razie nie dziala musze ogarnac
+        //na razie nie dziala musze ogarnac, na watku przy ponownym uruchomieniu sie wywala a szkoda bo fajny efekt przy ładowaniu
         //#region SPLASHSCREEN
         ///// <summary>
         ///// Wylacza splash screen
