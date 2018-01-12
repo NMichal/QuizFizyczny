@@ -81,6 +81,12 @@
     <Compile Include="Forms\FrmLoginRegister.Designer.cs">
       <DependentUpon>FrmLoginRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmSplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSplashScreen.Designer.cs">
+      <DependentUpon>FrmSplashScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MenuStart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,8 +96,17 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TODO.cs" />
+    <Compile Include="UserControls\UcMultiplayer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcMultiplayer.Designer.cs">
+      <DependentUpon>UcMultiplayer.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\FrmLoginRegister.resx">
       <DependentUpon>FrmLoginRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSplashScreen.resx">
+      <DependentUpon>FrmSplashScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MenuStart.resx">
       <DependentUpon>MenuStart.cs</DependentUpon>
@@ -104,7 +119,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\UcMultiplayer.resx">
+      <DependentUpon>UcMultiplayer.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="DataBase\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -126,9 +145,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControl\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="DataBase\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -140,7 +157,27 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\icons8-physics-96.png" />
+    <None Include="Resources\1.png" />
+    <None Include="Resources\2.png" />
+    <None Include="Resources\3.png" />
+    <None Include="Resources\4.png" />
+    <None Include="Resources\5.png" />
+    <None Include="Resources\6.png" />
+    <None Include="Resources\7.png" />
+    <None Include="Resources\8.png" />
+    <Content Include="Zasoby\animation\1.png" />
+    <Content Include="Zasoby\animation\2.png" />
+    <Content Include="Zasoby\animation\3.png" />
+    <Content Include="Zasoby\animation\4.png" />
+    <Content Include="Zasoby\animation\5.png" />
+    <Content Include="Zasoby\animation\6.png" />
+    <Content Include="Zasoby\animation\7.png" />
+    <Content Include="Zasoby\animation\8.png" />
+    <Content Include="Zasoby\icons8-physics-96.png" />
+    <None Include="Resources\icons8-online-96.png" />
     <Content Include="Zasoby\icons8-faq-96.png" />
+    <Content Include="Zasoby\icons8-online-96.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

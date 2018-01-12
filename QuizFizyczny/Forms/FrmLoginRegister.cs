@@ -4,9 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,6 +16,7 @@ namespace QuizFizyczny.Forms
 {
     public partial class FrmLoginRegister : Form
     {
+       // Thread splash;
         public FrmLoginRegister()
         {
             InitializeComponent();
@@ -104,16 +107,20 @@ namespace QuizFizyczny.Forms
         #region LOGOWANIE
         private void BtnLogin_Click(object sender, EventArgs e)
         {
+           // wlaczLadowanie();
             if (walidujLogowanie(TbLogin.Text, TbHaslo.Text))
             {
+                //wylaczLadowanie();
                 var form = new MenuStart();
                 this.Hide();
                 form.Show();
             }
             else
             {
+                //wylaczLadowanie();
                 MessageBox.Show("Nie porwany login bądź hasło!", "Błąd przy logowaniu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
                 
         }
 
@@ -139,5 +146,25 @@ namespace QuizFizyczny.Forms
         }
 
         #endregion
+
+        //na razie nie dziala musze ogarnac
+        //#region SPLASHSCREEN
+        ///// <summary>
+        ///// Wylacza splash screen
+        ///// </summary>
+        //private void wylaczLadowanie()
+        //{
+        //    splash.Close();
+        //}
+
+        ///// <summary>
+        ///// Wlacza splash screen
+        ///// </summary>
+        //private void wlaczLadowanie()
+        //{
+        //    splash = new ThreadStart()
+        //    splash.Show();
+        //}
+        //#endregion
     }
 }
