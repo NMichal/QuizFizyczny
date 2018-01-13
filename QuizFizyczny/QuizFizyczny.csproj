@@ -123,6 +123,12 @@
     <Compile Include="UserControls\UcQuiz.Designer.cs">
       <DependentUpon>UcQuiz.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcSingleplayer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcSingleplayer.Designer.cs">
+      <DependentUpon>UcSingleplayer.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\FrmLoginRegister.resx">
       <DependentUpon>FrmLoginRegister.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcQuiz.resx">
       <DependentUpon>UcQuiz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcSingleplayer.resx">
+      <DependentUpon>UcSingleplayer.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="DataBase\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

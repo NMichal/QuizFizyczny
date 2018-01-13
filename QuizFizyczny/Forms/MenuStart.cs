@@ -20,11 +20,9 @@ namespace QuizFizyczny.Forms
 
         private void bttnSingle_Click(object sender, EventArgs e)
         {
-            //masz pzygotowane MICHAŁ :D
-
-            //UcSingleplayer ucSingle = new UcSingleplayer();
-            //ucSingle.Dock = DockStyle.Fill;
-            
+            UcSingleplayer ucSingle = new UcSingleplayer();
+            ucSingle.Dock = DockStyle.Fill;
+            ustawPanelZTrybem(ucSingle);
         }
 
         private void bttnMulti_Click(object sender, EventArgs e)
