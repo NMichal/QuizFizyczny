@@ -32,5 +32,7 @@ namespace QuizFizyczny.DataBase
         public virtual DbSet<Rozgrywka> Rozgrywka { get; set; }
         public virtual DbSet<RozgrywkaOdp> RozgrywkaOdp { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<RankingMulti> RankingMulti { get; set; }
+        public virtual DbSet<RankingSingle> RankingSingle { get; set; }
     }
 }

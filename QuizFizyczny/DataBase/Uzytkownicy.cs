@@ -20,6 +20,8 @@ namespace QuizFizyczny.DataBase
             this.Rozgrywka = new HashSet<Rozgrywka>();
             this.Rozgrywka1 = new HashSet<Rozgrywka>();
             this.RozgrywkaOdp = new HashSet<RozgrywkaOdp>();
+            this.RankingMulti = new HashSet<RankingMulti>();
+            this.RankingSingle = new HashSet<RankingSingle>();
         }
     
         public int id { get; set; }
@@ -32,5 +34,9 @@ namespace QuizFizyczny.DataBase
         public virtual ICollection<Rozgrywka> Rozgrywka1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RozgrywkaOdp> RozgrywkaOdp { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RankingMulti> RankingMulti { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RankingSingle> RankingSingle { get; set; }
     }
 }
