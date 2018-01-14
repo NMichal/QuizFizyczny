@@ -25,6 +25,11 @@
         <AssociationConnector Association="QuizFizModel.FK_Rozgrywka_Uztk2" />
         <AssociationConnector Association="QuizFizModel.FK_RozgrywkaOdp_Rozgrywka" />
         <AssociationConnector Association="QuizFizModel.FK_RozgrywkaOdp_Uztk" />
+        <EntityTypeShape EntityType="QuizFizModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="QuizFizModel.RankingMulti" Width="1.5" PointX="3" PointY="9.125" />
+        <EntityTypeShape EntityType="QuizFizModel.RankingSingle" Width="1.5" PointX="3" PointY="11.875" />
+        <AssociationConnector Association="QuizFizModel.FK_RankingMulti_Uzytkownicy" />
+        <AssociationConnector Association="QuizFizModel.FK_RankingSingle_idGracz" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,4 +1,5 @@
-﻿using QuizFizyczny.UserControls;
+﻿using QuizFizyczny.Class;
+using QuizFizyczny.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace QuizFizyczny.Forms
         public MenuStart()
         {
             InitializeComponent();
+            lLogin.Text = ContextApp.LoginUzytko;
         }
 
         private void bttnSingle_Click(object sender, EventArgs e)
@@ -28,7 +30,6 @@ namespace QuizFizyczny.Forms
         private void bttnMulti_Click(object sender, EventArgs e)
         {
             UcMultiplayer ucMulti = new UcMultiplayer(this);
-            ///ucMulti.Dock = DockStyle.Fill;
             ustawPanelZTrybem(ucMulti);
         }
         

@@ -12,20 +12,13 @@ namespace QuizFizyczny.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class RozgrywkaOdp
+    public partial class RankingMulti
     {
         public int id { get; set; }
-        public int idRozgrywki { get; set; }
-        public int idodp1 { get; set; }
-        public int idodp2 { get; set; }
-        public int idodp3 { get; set; }
-        public int iduzt { get; set; }
+        public int idGracza { get; set; }
         public int punkty { get; set; }
+        public int iloscGier { get; set; }
     
-        public virtual Odpowiedzi Odpowiedzi { get; set; }
-        public virtual Odpowiedzi Odpowiedzi1 { get; set; }
-        public virtual Odpowiedzi Odpowiedzi2 { get; set; }
-        public virtual Rozgrywka Rozgrywka { get; set; }
         public virtual Uzytkownicy Uzytkownicy { get; set; }
     }
 }
