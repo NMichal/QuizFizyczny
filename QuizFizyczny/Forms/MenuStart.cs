@@ -40,5 +40,16 @@ namespace QuizFizyczny.Forms
 
             panelGame.Controls.Add(userControl);
         }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);        
+            if (e.CloseReason == CloseReason.WindowsShutDown) return;
+
+            //Environment.Exit(0);
+            Application.Exit();
+
+            
+        }
     }
 }

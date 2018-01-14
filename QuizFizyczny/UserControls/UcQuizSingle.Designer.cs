@@ -30,7 +30,6 @@
         {
             this.textBoxPytanie = new System.Windows.Forms.TextBox();
             this.bttnOdpowiedz = new System.Windows.Forms.Button();
-            this.bttnZakoncz = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
@@ -52,27 +51,15 @@
             // 
             // bttnOdpowiedz
             // 
-            this.bttnOdpowiedz.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.bttnOdpowiedz.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bttnOdpowiedz.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bttnOdpowiedz.Location = new System.Drawing.Point(263, 443);
+            this.bttnOdpowiedz.Location = new System.Drawing.Point(656, 448);
             this.bttnOdpowiedz.Name = "bttnOdpowiedz";
-            this.bttnOdpowiedz.Size = new System.Drawing.Size(112, 37);
+            this.bttnOdpowiedz.Size = new System.Drawing.Size(112, 32);
             this.bttnOdpowiedz.TabIndex = 3;
             this.bttnOdpowiedz.Text = "Odpowiedz";
             this.bttnOdpowiedz.UseVisualStyleBackColor = true;
             this.bttnOdpowiedz.Click += new System.EventHandler(this.bttnOdpowiedz_Click);
-            // 
-            // bttnZakoncz
-            // 
-            this.bttnZakoncz.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.bttnZakoncz.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bttnZakoncz.Location = new System.Drawing.Point(412, 443);
-            this.bttnZakoncz.Name = "bttnZakoncz";
-            this.bttnZakoncz.Size = new System.Drawing.Size(112, 37);
-            this.bttnZakoncz.TabIndex = 4;
-            this.bttnZakoncz.Text = "Zakończ";
-            this.bttnZakoncz.UseVisualStyleBackColor = true;
-            this.bttnZakoncz.Click += new System.EventHandler(this.bttnZakoncz_Click);
             // 
             // groupBox1
             // 
@@ -84,7 +71,6 @@
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Location = new System.Drawing.Point(24, 114);
-            this.groupBox1.MaximumSize = new System.Drawing.Size(1200, 1200);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(744, 312);
             this.groupBox1.TabIndex = 5;
@@ -141,7 +127,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.textBoxPytanie);
             this.Controls.Add(this.bttnOdpowiedz);
-            this.Controls.Add(this.bttnZakoncz);
             this.Controls.Add(this.groupBox1);
             this.Name = "UcQuizSingle";
             this.Size = new System.Drawing.Size(808, 508);
@@ -156,7 +141,6 @@
 
         private System.Windows.Forms.TextBox textBoxPytanie;
         private System.Windows.Forms.Button bttnOdpowiedz;
-        private System.Windows.Forms.Button bttnZakoncz;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton3;

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using QuizFizyczny.DataBase;
 using System.Diagnostics;
 using System.Media;
+using QuizFizyczny.Forms;
 
 namespace QuizFizyczny.UserControls
 {
