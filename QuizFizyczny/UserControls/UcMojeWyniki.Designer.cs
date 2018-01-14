@@ -30,8 +30,8 @@
         {
             this.BtnWroc = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.cHTwojWynik = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cHPrzeciwnik = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cHTwojWynik = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cHWynikPzeciwnik = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cHRezultat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
@@ -44,6 +44,7 @@
             this.BtnWroc.TabIndex = 0;
             this.BtnWroc.Text = "<- WRÓĆ";
             this.BtnWroc.UseVisualStyleBackColor = true;
+            this.BtnWroc.Click += new System.EventHandler(this.BtnWroc_Click);
             // 
             // listView1
             // 
@@ -61,18 +62,18 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // cHPrzeciwnik
+            // 
+            this.cHPrzeciwnik.DisplayIndex = 1;
+            this.cHPrzeciwnik.Text = "Login pzeciwnika";
+            this.cHPrzeciwnik.Width = 101;
+            // 
             // cHTwojWynik
             // 
             this.cHTwojWynik.DisplayIndex = 0;
             this.cHTwojWynik.Text = "Twój wynik";
             this.cHTwojWynik.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cHTwojWynik.Width = 90;
-            // 
-            // cHPrzeciwnik
-            // 
-            this.cHPrzeciwnik.DisplayIndex = 1;
-            this.cHPrzeciwnik.Text = "Login pzeciwnika";
-            this.cHPrzeciwnik.Width = 101;
             // 
             // cHWynikPzeciwnik
             // 

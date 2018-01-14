@@ -32,8 +32,8 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="idGracza" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idGracza" Type="int" Nullable="false" StoreGeneratedPattern="None" />
           <Property Name="punkty" Type="int" Nullable="false" />
           <Property Name="iloscGier" Type="int" Nullable="false" />
         </EntityType>
@@ -699,7 +699,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="idGracza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idGracza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="punkty" Type="Int32" Nullable="false" />
           <Property Name="iloscGier" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Uzytkownicy" Relationship="QuizFizModel.FK_RankingMulti_Uzytkownicy" FromRole="RankingMulti" ToRole="Uzytkownicy" />

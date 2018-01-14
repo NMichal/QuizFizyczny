@@ -58,8 +58,9 @@
             this.BtnWyniki.Name = "BtnWyniki";
             this.BtnWyniki.Size = new System.Drawing.Size(234, 52);
             this.BtnWyniki.TabIndex = 1;
-            this.BtnWyniki.Text = "Tablica wyników";
+            this.BtnWyniki.Text = "Ranking";
             this.BtnWyniki.UseVisualStyleBackColor = true;
+            this.BtnWyniki.Click += new System.EventHandler(this.BtnWyniki_Click);
             // 
             // label1
             // 

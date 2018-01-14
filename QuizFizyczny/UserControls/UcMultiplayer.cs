@@ -64,6 +64,7 @@ namespace QuizFizyczny.UserControls
             ContextDb.contextDB.Rozgrywka.Add(nowaGra);
             ContextDb.contextDB.SaveChanges();
 
+            MessageBox.Show("Za chwilę rozpocznie się quiz. Nie znaleziono trwającego rozgrywki więc zostanie utworzona nowa.\nW tym trybie nie liczy się tempo lecz skuteczność. Powodzenia!", "Tworzenie nowej rozgrywki");
             UcQuiz ucQuiz = new UcQuiz(obiektPytania, odpowiedzi, poprawOdpo, _parent, nowaGra);
             _parent.ustawPanelZTrybem(ucQuiz);
         }
@@ -92,8 +93,9 @@ namespace QuizFizyczny.UserControls
                 List<Odpowiedzi> odpowiedzi = ContextDb.contextDB.Odpowiedzi.Where(x => pytaniaId.Contains(x.id_pytanie)).ToList();
                 List<PoprawneOdpowiedzi> poprawOdpo = ContextDb.contextDB.PoprawneOdpowiedzi.Where(x => pytaniaId.Contains(x.id_pytanie)).ToList();
 
-                UcQuiz ucQuiz = new UcQuiz(obiektPytania, odpowiedzi, poprawOdpo, _parent, gra);
+                UcQuiz ucQuiz = new UcQuiz(obiektPytania, odpowiedzi, poprawOdpo, _parent, gra, true);
 
+                MessageBox.Show("Za chwilę rozpocznie się quiz. Dołączyłeś do rozgrywki.\nW tym trybie nie liczy się tempo lecz skuteczność. Powodzenia!", "Dołączanie do rozgrywki");
                 _parent.ustawPanelZTrybem(ucQuiz);
             }
             else
@@ -102,5 +104,9 @@ namespace QuizFizyczny.UserControls
             }
         }
 
+        private void BtnWyniki_Click(object sender, EventArgs e)
+        {
+            _parent.ustawPanelZTrybem(new UcRankingMulti(_parent));
+        }
     }
 }

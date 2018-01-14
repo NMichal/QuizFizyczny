@@ -63,5 +63,10 @@ namespace QuizFizyczny.UserControls
             var item = new ListViewItem(row);
             listView1.Items.Add(item);
         }
+
+        private void BtnWroc_Click(object sender, EventArgs e)
+        {
+            _parent.ustawPanelZTrybem(new UcMultiplayer(_parent));
+        }
     }
 }
