@@ -33,14 +33,14 @@ namespace QuizFizyczny.UserControls
         /// <summary>
         /// Tworzy nową rozgrywkę
         /// </summary>
-        private void stworzNowaRozgrywke()
+        private void stworzNowaRozgrywke(int iloscPytan)
         {
             Rozgrywka nowaGra = new Rozgrywka();
             var pytania = ContextDb.contextDB.Pytania.ToList();
             List<int> pytaniaId = new List<int>();
             Random generator = new Random();
             
-            while(pytaniaId.Count != 3)
+            while(pytaniaId.Count != iloscPytan)
             {
                 int liczba = generator.Next(1, pytania.Count);
                 if (!pytaniaId.Contains(liczba))
@@ -94,7 +94,7 @@ namespace QuizFizyczny.UserControls
             }
             else
             {
-                stworzNowaRozgrywke();
+                stworzNowaRozgrywke(3);
             }
         }
     }
