@@ -8,21 +8,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuizFizyczny.DataBase;
+using QuizFizyczny.Forms;
 
 namespace QuizFizyczny.UserControls
 {
     public partial class UcSingleplayer : UserControl
     {
-        public UcSingleplayer()
+        private MenuStart _parent;
+        public UcSingleplayer(MenuStart parent)
         {
             InitializeComponent();
+            _parent = parent;
         }
 
         private void bttnGraj_Click(object sender, EventArgs e)
         {
-
             MessageBox.Show("Za chwilę rozpoczniesz nową grę! Im szybsza odpowiedź tym więcej punktów. Powodzenia!", "Rozpocznij grę");
             List<int> oidPytan = losujPytania(5);
+            UcQuizSingle quizSingle = new UcQuizSingle(oidPytan);
+            quizSingle.Dock = DockStyle.Fill;
+            _parent.ustawPanelZTrybem(quizSingle);
 
         }
 

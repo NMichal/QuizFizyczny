@@ -60,6 +60,7 @@
             // 
             // bttnGraj
             // 
+            this.bttnGraj.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.bttnGraj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bttnGraj.Location = new System.Drawing.Point(262, 11);
             this.bttnGraj.Name = "bttnGraj";
@@ -71,6 +72,7 @@
             // 
             // bttnWszystkieWyniki
             // 
+            this.bttnWszystkieWyniki.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bttnWszystkieWyniki.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bttnWszystkieWyniki.Location = new System.Drawing.Point(262, 404);
             this.bttnWszystkieWyniki.Name = "bttnWszystkieWyniki";

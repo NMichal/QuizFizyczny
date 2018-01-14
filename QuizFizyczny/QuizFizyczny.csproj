@@ -132,6 +132,12 @@
     <Compile Include="UserControls\UcQuiz.Designer.cs">
       <DependentUpon>UcQuiz.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcQuizSingle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcQuizSingle.Designer.cs">
+      <DependentUpon>UcQuizSingle.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcSingleplayer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcQuiz.resx">
       <DependentUpon>UcQuiz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcQuizSingle.resx">
+      <DependentUpon>UcQuizSingle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcSingleplayer.resx">
       <DependentUpon>UcSingleplayer.cs</DependentUpon>
