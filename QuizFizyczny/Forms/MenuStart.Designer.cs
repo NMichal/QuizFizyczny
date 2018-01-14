@@ -62,18 +62,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelGame.Location = new System.Drawing.Point(201, 12);
             this.panelGame.Name = "panelGame";
-            this.panelGame.Size = new System.Drawing.Size(771, 510);
+            this.panelGame.Size = new System.Drawing.Size(1050, 635);
             this.panelGame.TabIndex = 4;
             // 
             // MenuStart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 534);
+            this.ClientSize = new System.Drawing.Size(1263, 659);
             this.Controls.Add(this.panelGame);
             this.Controls.Add(this.bttnMulti);
             this.Controls.Add(this.bttnSingle);
-            this.MinimumSize = new System.Drawing.Size(1000, 500);
+            this.MinimumSize = new System.Drawing.Size(1279, 698);
             this.Name = "MenuStart";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";

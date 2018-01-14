@@ -20,20 +20,21 @@ namespace QuizFizyczny.Forms
 
         private void bttnSingle_Click(object sender, EventArgs e)
         {
-            UcSingleplayer ucSingle = new UcSingleplayer();
-            ucSingle.Dock = DockStyle.Fill;
-            ustawPanelZTrybem(ucSingle);
+            //UcSingleplayer ucSingle = new UcSingleplayer();
+            //ucSingle.Dock = DockStyle.Fill;
+            //ustawPanelZTrybem(ucSingle);
         }
 
         private void bttnMulti_Click(object sender, EventArgs e)
         {
             UcMultiplayer ucMulti = new UcMultiplayer(this);
-            ucMulti.Dock = DockStyle.Fill;
+            ///ucMulti.Dock = DockStyle.Fill;
             ustawPanelZTrybem(ucMulti);
         }
-
-        private void ustawPanelZTrybem(UserControl userControl)
+        
+        public void ustawPanelZTrybem(UserControl userControl)
         {
+            userControl.Dock = DockStyle.Fill;
             panelGame.Controls.Clear();
 
             panelGame.Controls.Add(userControl);

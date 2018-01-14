@@ -58,6 +58,9 @@ namespace QuizFizyczny.UserControls
 
             ContextDb.contextDB.Rozgrywka.Add(nowaGra);
             ContextDb.contextDB.SaveChanges();
+
+            UcQuiz ucQuiz = new UcQuiz(obiektPytania, odpowiedzi, poprawOdpo, _parent, true);
+            _parent.ustawPanelZTrybem(ucQuiz);
         }
         
         /// <summary>
@@ -83,6 +86,11 @@ namespace QuizFizyczny.UserControls
                 List<Pytania> obiektPytania = ContextDb.contextDB.Pytania.Where(x => pytaniaId.Contains(x.id)).ToList();
                 List<Odpowiedzi> odpowiedzi = ContextDb.contextDB.Odpowiedzi.Where(x => pytaniaId.Contains(x.id_pytanie)).ToList();
                 List<PoprawneOdpowiedzi> poprawOdpo = ContextDb.contextDB.PoprawneOdpowiedzi.Where(x => pytaniaId.Contains(x.id_pytanie)).ToList();
+
+                UcQuiz ucQuiz = new UcQuiz(obiektPytania, odpowiedzi, poprawOdpo, _parent, true);
+                //ucQuiz.Dock = DockStyle.Fill;
+
+                _parent.ustawPanelZTrybem(ucQuiz);
             }
             else
             {
