@@ -25,7 +25,7 @@ namespace QuizFizyczny.UserControls
         {
             MessageBox.Show("Za chwilę rozpoczniesz nową grę! Im szybsza odpowiedź tym więcej punktów. Powodzenia!", "Rozpocznij grę");
             List<int> oidPytan = losujPytania(5);
-            UcQuizSingle quizSingle = new UcQuizSingle(oidPytan);
+            UcQuizSingle quizSingle = new UcQuizSingle(_parent ,oidPytan);
             quizSingle.Dock = DockStyle.Fill;
             _parent.ustawPanelZTrybem(quizSingle);
 

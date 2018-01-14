@@ -11,11 +11,13 @@ using QuizFizyczny.DataBase;
 using System.Diagnostics;
 using System.Media;
 using QuizFizyczny.Forms;
+using QuizFizyczny.Class;
 
 namespace QuizFizyczny.UserControls
 {
     public partial class UcQuizSingle : UserControl
     {
+        MenuStart _parent;
         List<int> listOidPytan = null;
         int liczbaPytan = 0;
         int aktualnyNumerPytania = 0;
@@ -23,9 +25,10 @@ namespace QuizFizyczny.UserControls
         Pytania aktualnePytanieObj;
         int lacznaLiczbaPunktow = 0;
         Stopwatch czasOdpowiedzi = new Stopwatch();
-        public UcQuizSingle(List<int> oidPytania)
+        public UcQuizSingle(MenuStart parent, List<int> oidPytania)
         {
             InitializeComponent();
+            _parent = parent;
             listRB = new List<RadioButton>(new RadioButton[] { radioButton1, radioButton2, radioButton3, radioButton4 });
             listOidPytan = oidPytania;
             liczbaPytan = oidPytania.Count;
@@ -65,11 +68,7 @@ namespace QuizFizyczny.UserControls
                 }
                 else
                 {
-                    string tekstKoncowy = string.Format("Quiz zakończony, uzyskana liczba punktów: {0}", lacznaLiczbaPunktow.ToString());
-                    MessageBox.Show(tekstKoncowy, "Koniec");
-                    //Liczba punktów: .... Zająłeś ... miejsce.
-                    //this.Close();
-                    //czasOdpowiedzi.Reset();
+                    KoniecQuizu();
                 }
             }
             else
@@ -132,9 +131,43 @@ namespace QuizFizyczny.UserControls
             }
         }
 
-        private void bttnZakoncz_Click(object sender, EventArgs e)
+private void KoniecQuizu()
         {
+            string tekstKoncowy;
+            RankingSingle rs = ContextDb.contextDB.RankingSingle.Where(a => a.idGracza == ContextApp.IdUzytko).FirstOrDefault();
+            if(rs != null)
+            {                
+                if(rs.punkty < lacznaLiczbaPunktow)
+                {                    
+                    tekstKoncowy = string.Format("Quiz zakończony, uzyskana liczba punktów: {0}. Pobito wcześniejszy wynik wynoszący {1}. Gratulacje!", lacznaLiczbaPunktow.ToString(), rs.punkty.ToString());
+                    rs.punkty = lacznaLiczbaPunktow;
+                    ContextDb.contextDB.SaveChanges();
+                }
+                else
+                {
+                    tekstKoncowy = string.Format("Quiz zakończony, uzyskana liczba punktów: {0}. Nie udało się pobić wcześniejszego wyniku wynoszącego {1}. Próbuj dalej!", lacznaLiczbaPunktow.ToString(), rs.punkty.ToString());
+                }
+            }
+            else
+            {
+                RankingSingle noweRS = new RankingSingle()
+                {
+                    idGracza = ContextApp.IdUzytko,
+                    punkty = lacznaLiczbaPunktow
+                };
 
+                ContextDb.contextDB.RankingSingle.Add(noweRS);
+                ContextDb.contextDB.SaveChanges();
+                tekstKoncowy = string.Format("Quiz zakończony, uzyskana liczba punktów: {0}", lacznaLiczbaPunktow.ToString());
+            }
+            
+            MessageBox.Show(tekstKoncowy, "Koniec");
+            //Liczba punktów: .... Zająłeś ... miejsce.
+            //pobiłeś swój poprzedni wynik: ... punktów
+
+            UcSingleplayer ucSingle = new UcSingleplayer(_parent);
+            ucSingle.Dock = DockStyle.Fill;
+            _parent.ustawPanelZTrybem(ucSingle);
         }
     }
 }
