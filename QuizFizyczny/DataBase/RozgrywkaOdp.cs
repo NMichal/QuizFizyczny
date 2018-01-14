@@ -20,6 +20,7 @@ namespace QuizFizyczny.DataBase
         public int idodp2 { get; set; }
         public int idodp3 { get; set; }
         public int iduzt { get; set; }
+        public int punkty { get; set; }
     
         public virtual Odpowiedzi Odpowiedzi { get; set; }
         public virtual Odpowiedzi Odpowiedzi1 { get; set; }

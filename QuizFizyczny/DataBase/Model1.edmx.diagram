@@ -25,6 +25,7 @@
         <AssociationConnector Association="QuizFizModel.FK_Rozgrywka_Uztk2" />
         <AssociationConnector Association="QuizFizModel.FK_RozgrywkaOdp_Rozgrywka" />
         <AssociationConnector Association="QuizFizModel.FK_RozgrywkaOdp_Uztk" />
+        <EntityTypeShape EntityType="QuizFizModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

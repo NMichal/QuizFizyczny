@@ -30,6 +30,11 @@ namespace QuizFizyczny.UserControls
             wyszukajIDolacz();
         }
 
+        private void BtnMojeWyniki_Click(object sender, EventArgs e)
+        {
+            _parent.ustawPanelZTrybem(new UcMojeWyniki(_parent));
+        }
+
         /// <summary>
         /// Tworzy nową rozgrywkę
         /// </summary>
@@ -59,7 +64,7 @@ namespace QuizFizyczny.UserControls
             ContextDb.contextDB.Rozgrywka.Add(nowaGra);
             ContextDb.contextDB.SaveChanges();
 
-            UcQuiz ucQuiz = new UcQuiz(obiektPytania, odpowiedzi, poprawOdpo, _parent, true);
+            UcQuiz ucQuiz = new UcQuiz(obiektPytania, odpowiedzi, poprawOdpo, _parent, nowaGra);
             _parent.ustawPanelZTrybem(ucQuiz);
         }
         
@@ -87,8 +92,7 @@ namespace QuizFizyczny.UserControls
                 List<Odpowiedzi> odpowiedzi = ContextDb.contextDB.Odpowiedzi.Where(x => pytaniaId.Contains(x.id_pytanie)).ToList();
                 List<PoprawneOdpowiedzi> poprawOdpo = ContextDb.contextDB.PoprawneOdpowiedzi.Where(x => pytaniaId.Contains(x.id_pytanie)).ToList();
 
-                UcQuiz ucQuiz = new UcQuiz(obiektPytania, odpowiedzi, poprawOdpo, _parent, true);
-                //ucQuiz.Dock = DockStyle.Fill;
+                UcQuiz ucQuiz = new UcQuiz(obiektPytania, odpowiedzi, poprawOdpo, _parent, gra);
 
                 _parent.ustawPanelZTrybem(ucQuiz);
             }
@@ -97,5 +101,6 @@ namespace QuizFizyczny.UserControls
                 stworzNowaRozgrywke(3);
             }
         }
+
     }
 }
