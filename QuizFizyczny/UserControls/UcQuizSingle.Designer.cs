@@ -41,6 +41,8 @@
             // 
             // textBoxPytanie
             // 
+            this.textBoxPytanie.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxPytanie.Location = new System.Drawing.Point(24, 27);
             this.textBoxPytanie.Multiline = true;
             this.textBoxPytanie.Name = "textBoxPytanie";
@@ -50,6 +52,7 @@
             // 
             // bttnOdpowiedz
             // 
+            this.bttnOdpowiedz.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bttnOdpowiedz.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bttnOdpowiedz.Location = new System.Drawing.Point(281, 445);
             this.bttnOdpowiedz.Name = "bttnOdpowiedz";
@@ -61,6 +64,7 @@
             // 
             // bttnZakoncz
             // 
+            this.bttnZakoncz.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bttnZakoncz.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bttnZakoncz.Location = new System.Drawing.Point(430, 445);
             this.bttnZakoncz.Name = "bttnZakoncz";
@@ -72,6 +76,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.radioButton4);
             this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Controls.Add(this.radioButton2);
