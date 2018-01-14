@@ -15,9 +15,12 @@ namespace QuizFizyczny.UserControls
     public partial class UcSingleplayer : UserControl
     {
         private MenuStart _parent;
+        List<Label> labelList;
         public UcSingleplayer(MenuStart parent)
         {
             InitializeComponent();
+            labelList = new List<Label>(new Label[] { label3, label4, label5, label6, label7 });
+            WyswietlTop5();
             _parent = parent;
         }
 
@@ -25,7 +28,7 @@ namespace QuizFizyczny.UserControls
         {
             MessageBox.Show("Za chwilę rozpoczniesz nową grę! Im szybsza odpowiedź tym więcej punktów. Powodzenia!", "Rozpocznij grę");
             List<int> oidPytan = losujPytania(5);
-            UcQuizSingle quizSingle = new UcQuizSingle(_parent ,oidPytan);
+            UcQuizSingle quizSingle = new UcQuizSingle(_parent, oidPytan);
             quizSingle.Dock = DockStyle.Fill;
             _parent.ustawPanelZTrybem(quizSingle);
 
@@ -49,6 +52,19 @@ namespace QuizFizyczny.UserControls
             Random rand = new Random();
             listOidPytan = listOidPytan.OrderBy(x => rand.Next()).ToList();
             return listOidPytan.Take(ilePytan).ToList();
+        }
+
+        private void WyswietlTop5()
+        {
+            int i = 0;
+            List<RankingSingle> rankSing = ContextDb.contextDB.RankingSingle.OrderByDescending(a => a.punkty).ToList();
+            foreach (RankingSingle rk in rankSing)
+            {
+                Uzytkownicy uzytk = ContextDb.contextDB.Uzytkownicy.Where(a => a.id == rk.idGracza).FirstOrDefault();
+                string tekst = string.Format("{0}. {1} - {2} pkt", (i+1).ToString(), uzytk.login, rk.punkty.ToString());
+                labelList[i].Text = tekst;
+                i++;
+            }
         }
     }
 }

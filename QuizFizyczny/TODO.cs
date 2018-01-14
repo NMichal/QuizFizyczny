@@ -15,5 +15,10 @@ namespace QuizFizyczny
         /// 
         ///menu Start z wyborem gry - single czy multi
         ///baza - postawimy na VPS i postaram się to połączyć z ENTITY
+        ///
+
+        /// michal - mieszanie odp - za każdym razem inaczej układane odpowiedzi
+        /// ranking cały
+        /// 
     }
 }
