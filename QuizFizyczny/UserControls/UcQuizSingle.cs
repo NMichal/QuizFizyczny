@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuizFizyczny.DataBase;
 using System.Diagnostics;
+using System.Media;
 
 namespace QuizFizyczny.UserControls
 {
@@ -47,7 +48,7 @@ namespace QuizFizyczny.UserControls
         }
 
         private void bttnOdpowiedz_Click(object sender, EventArgs e)
-        {            
+        {
             if (radioButton1.Checked || radioButton2.Checked || radioButton3.Checked || radioButton4.Checked)
             {
                 czasOdpowiedzi.Stop();
@@ -63,7 +64,8 @@ namespace QuizFizyczny.UserControls
                 }
                 else
                 {
-                    MessageBox.Show("Quiz zakończony", "Koniec");
+                    string tekstKoncowy = string.Format("Quiz zakończony, uzyskana liczba punktów: {0}", lacznaLiczbaPunktow.ToString());
+                    MessageBox.Show(tekstKoncowy, "Koniec");
                     //Liczba punktów: .... Zająłeś ... miejsce.
                     //this.Close();
                     //czasOdpowiedzi.Reset();
@@ -77,14 +79,28 @@ namespace QuizFizyczny.UserControls
 
         private bool czyOdpPoprawna()
         {
-            PoprawneOdpowiedzi poprawnaOdp = aktualnePytanieObj.PoprawneOdpowiedzi.ToArray()[0];            
+            PoprawneOdpowiedzi poprawnaOdp = aktualnePytanieObj.PoprawneOdpowiedzi.ToArray()[0];
             Odpowiedzi odp = ContextDb.contextDB.Odpowiedzi.Where(a => a.id == poprawnaOdp.id_odpowiedzPytanie).FirstOrDefault();
             foreach (var radiobutton in listRB)
             {
                 if (radiobutton.Checked)
                     if (radiobutton.Text == odp.odpowiedz)
-                        return true;                
+                    {
+                        try
+                        {
+                            SoundPlayer sound = new SoundPlayer(Properties.Resources.dobaOdp);
+                            sound.Play();
+                        }
+                        catch { }
+                        return true;
+                    }
             }
+            try
+            {
+                SoundPlayer sound2 = new SoundPlayer(Properties.Resources.blednaOdp);
+                sound2.Play();
+            }
+            catch { }
             return false;
         }
 
@@ -111,8 +127,8 @@ namespace QuizFizyczny.UserControls
             else
             {
                 liczbaPkt = 0;
-                return liczbaPkt;            
-            }               
+                return liczbaPkt;
+            }
         }
 
         private void bttnZakoncz_Click(object sender, EventArgs e)
