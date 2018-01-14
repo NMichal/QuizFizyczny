@@ -54,7 +54,7 @@
             // 
             this.bttnOdpowiedz.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bttnOdpowiedz.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bttnOdpowiedz.Location = new System.Drawing.Point(281, 445);
+            this.bttnOdpowiedz.Location = new System.Drawing.Point(263, 443);
             this.bttnOdpowiedz.Name = "bttnOdpowiedz";
             this.bttnOdpowiedz.Size = new System.Drawing.Size(112, 37);
             this.bttnOdpowiedz.TabIndex = 3;
@@ -66,7 +66,7 @@
             // 
             this.bttnZakoncz.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bttnZakoncz.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bttnZakoncz.Location = new System.Drawing.Point(430, 445);
+            this.bttnZakoncz.Location = new System.Drawing.Point(412, 443);
             this.bttnZakoncz.Name = "bttnZakoncz";
             this.bttnZakoncz.Size = new System.Drawing.Size(112, 37);
             this.bttnZakoncz.TabIndex = 4;
