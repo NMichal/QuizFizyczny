@@ -105,7 +105,7 @@ namespace QuizFizyczny.UserControls
         }
 
         /// <summary>
-        /// Metoda licząca punkty za poprawną odpowiedź, bazowa wartość 200pkt
+        /// Metoda licząca punkty za poprawną odpowiedź, bazowa wartość 300pkt
         /// za poprawną odpowiedź, oraz za każdą sekundę - 10 pkt        
         /// </summary>
         /// <returns>liczba punktów za jedną odpowiedź</returns>
@@ -163,7 +163,6 @@ private void KoniecQuizu()
             
             MessageBox.Show(tekstKoncowy, "Koniec");
             //Liczba punktów: .... Zająłeś ... miejsce.
-            //pobiłeś swój poprzedni wynik: ... punktów
 
             UcSingleplayer ucSingle = new UcSingleplayer(_parent);
             ucSingle.Dock = DockStyle.Fill;

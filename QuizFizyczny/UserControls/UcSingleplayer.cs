@@ -36,7 +36,9 @@ namespace QuizFizyczny.UserControls
 
         private void bttnWszystkieWyniki_Click(object sender, EventArgs e)
         {
-
+            UcRankingSingle rankingSingle = new UcRankingSingle(_parent);
+            rankingSingle.Dock = DockStyle.Fill;
+            _parent.ustawPanelZTrybem(rankingSingle);
         }
 
         /// <summary>

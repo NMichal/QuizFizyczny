@@ -150,6 +150,12 @@
     <Compile Include="UserControls\UcRankingMulti.Designer.cs">
       <DependentUpon>UcRankingMulti.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcRankingSingle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcRankingSingle.Designer.cs">
+      <DependentUpon>UcRankingSingle.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcSingleplayer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -189,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcRankingMulti.resx">
       <DependentUpon>UcRankingMulti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcRankingSingle.resx">
+      <DependentUpon>UcRankingSingle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcSingleplayer.resx">
       <DependentUpon>UcSingleplayer.cs</DependentUpon>
